@@ -91,11 +91,3 @@ k6 run loadtest.js
 Report the p95 latency and requests/sec from the summary — e.g. "sustained ~450 req/sec
 at 50 concurrent users with p95 latency under 40ms, cache hit ratio ~92%." That's a concrete,
 defensible number you can put on a resume and explain in an interview, versus an unverified claim.
-
-## What to say about it in an interview
-
-- Why base62-on-auto-increment instead of a hash or UUID (shorter codes, no collisions, no coordination).
-- Why cache-aside instead of write-through (reads vastly outnumber writes for a shortener).
-- Why 302 instead of 301.
-- The known rate-limiter gap above, and how you'd fix it (Redis-backed bucket).
-- What you'd add next: multi-region reads, a bloom filter to reject obviously-invalid short codes before hitting Redis, async click-count writes via a queue if write volume grew.
